@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const enabled = enabledInput.checked;
 
     // Empty input check
-    if (!pattern) {
+    if (!pattern && enabled) {
       showStatus("Pattern cannot be empty", true);
       return;
     }
