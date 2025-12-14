@@ -1,6 +1,6 @@
 # DOM Reflector
 
-Firefox extension that detects reflected strings or regex patterns in the live DOM of web pages, including delayed or asynchronous DOM injections using <a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver" target="_blank" rel="noopener noreferrer">`MutationObserver`</a>
+Firefox extension that detects reflected strings or regex patterns in the live DOM of web pages, including delayed or asynchronous DOM injections using [`MutationObserver`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
 
 ## Install
 
