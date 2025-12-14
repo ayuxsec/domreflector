@@ -1,0 +1,15 @@
+body {
+  font-family: monospace;
+  width: 250px;
+  padding: 10px;
+}
+
+input[type="text"] {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+button {
+  width: 100%;
+  margin-top: 5px;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>DOM Reflector Test</title>
+</head>
+<body>
+  <h1>Waiting for payload…</h1>
+  <button id="injectBtn" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">Inject Payload</button>
+
+  <script>
+    // Fetch payload from server
+    let responsePayload = "";
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/payload", true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        responsePayload = xhr.responseText;
+        console.log("Payload fetched from server:", responsePayload);
+      }
+    };
+    xhr.send();
+    // Auto-inject after 5 seconds
+    document.getElementById('injectBtn').addEventListener('click', function() {
+    this.textContent = "injecting...";
+    setTimeout(() => {
+      const h1 = document.createElement("h1");
+      h1.innerHTML = responsePayload;
+      document.body.appendChild(h1);
+      this.textContent = "Injected!";
+    }, 5000);
+    });
+  </script>
+
+</body>
+</html>
