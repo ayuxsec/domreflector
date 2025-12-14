@@ -4,11 +4,7 @@ Firefox extension that detects reflected strings or regex patterns in the live D
 
 ## Install
 
-1. Clone the repository:
-
-```console
-git clone --depth=1  https://github.com/ayuxsec/domreflector
-````
+1. Clone the repository: `git clone --depth=1 https://github.com/ayuxsec/domreflector`
 
 2. Load the extension in Firefox:
 
