@@ -5,7 +5,7 @@
     "enabled"
   ]);
 
-  if (enabled == false || !pattern) return;
+  if (!enabled || !pattern) return;
 
   let regex = null;
   if (isRegex) {
@@ -16,10 +16,13 @@
     }
   }
 
-  function checkDOM() {
-    const text = document.documentElement.textContent;
+  function matchHTML(html) {
+    return regex ? regex.test(html) : html.includes(pattern);
+  }
 
-    if (regex ? regex.test(text) : text.includes(pattern)) {
+  function checkInitialDOM() {
+    const html = document.documentElement.innerHTML;
+    if (matchHTML(html)) {
       browser.runtime.sendMessage({
         type: "REFLECTION_FOUND",
         pattern,
@@ -30,20 +33,31 @@
     return false;
   }
 
-  // 1 Initial check
-  if (checkDOM()) return;
+  if (checkInitialDOM()) return;
 
-  // 2️ Observe future DOM mutations
-  const observer = new MutationObserver(() => {
-    if (checkDOM()) {
-      observer.disconnect();
+  // Observe future DOM mutations (ELEMENTS ONLY)
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if (node.nodeType !== Node.ELEMENT_NODE) continue;
+
+        // Check only parsed HTML
+        const html = node.outerHTML;
+        if (matchHTML(html)) {
+          browser.runtime.sendMessage({
+            type: "REFLECTION_FOUND",
+            pattern,
+            url: location.href
+          });
+          observer.disconnect();
+          return;
+        }
+      }
     }
   });
 
   observer.observe(document.documentElement, {
     childList: true,
-    subtree: true,
-    characterData: true
+    subtree: true
   });
-
 })();
