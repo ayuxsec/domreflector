@@ -2,6 +2,13 @@
   "manifest_version": 2,
   "name": "DOM Reflector",
   "version": "1.0.3",
+
+    "browser_specific_settings": {
+    "gecko": {
+      "id": "domreflector@local"
+    }
+  },
+
   "icons": {
     "48": "src/icons/icon48.png",
     "96": "src/icons/icon96.png"
