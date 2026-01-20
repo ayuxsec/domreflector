@@ -10,8 +10,7 @@
   },
 
   "icons": {
-    "48": "src/icons/icon48.png",
-    "96": "src/icons/icon96.png"
+    "48": "src/icons/icon48.png"
   },
   "description": "Detect reflected strings or regex patterns in live DOM.",
   "permissions": [
