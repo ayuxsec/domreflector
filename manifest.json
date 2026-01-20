@@ -1,11 +1,14 @@
 {
   "manifest_version": 2,
   "name": "DOM Reflector",
-  "version": "1.0.6",
+  "version": "1.0.7",
 
     "browser_specific_settings": {
     "gecko": {
-      "id": "domreflector@local"
+      "id": "domreflector@local",
+      "data_collect_permissions":{
+        "none":true
+      }
     }
   },
 
